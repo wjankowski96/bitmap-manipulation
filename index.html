@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>
+        <script src="js/script.js"></script>
+        <script src="js/layout.js"></script>
+        <script src="js/version01.js"></script>
+        <script src="js/funkcje.js"></script>
+        
+
+        <title>Bitmap Manipulator</title>
+        <!-- ............................ jquery ver. 3.3.1 .................. -->
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <!-- ............................ bootstrap ver. 3.3.7 ............... -->
+        <link rel="stylesheet" href="css/bootstrap.min.css" crossorigin="anonymous">
+        <script src="js/bootstrap.min.js" crossorigin="anonymous"></script>
+        <!-- ................................................................. -->
+
+        
+    </head>
+    <body onLoad="updateCanvas();">
+        <style>
+            body {
+              background-color: #003f5c;
+            }
+            </style>
+  
+        <div class="navbar navbar-default" role="navigation">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bitmaps<b class="caret"></b></a>
+                    <ul class="dropdown-menu multi-level">
+                        <li><p class="menuItem" onclick="setBitmap( 'img/lena256.png' )">Lena256</p></li>
+                        <li><p class="menuItem" onclick="setBitmap( 'img/airplane256.png' )">Airplane256</p></li>
+                        <li><p class="menuItem" onclick="setBitmap( 'img/cicada256.png' )">Cicada256</p></li>
+                        <li><p class="menuItem" onclick="setBitmap( 'img/mandrill256.png' )">Mandrill256</p></li>
+                        <li><p class="menuItem" onclick="setBitmap( 'img/monkey256.png' )">Monkey256</p></li>
+                        <li><p class="menuItem" onclick="setBitmap( 'img/parrots256.png' )">Parrots256</p></li>
+                        <li><p class="menuItem" onclick="setBitmap( 'img/tire256.png' )">Tire256</p></li>
+                        <li><p class="menuItem" onclick="setBitmap( 'img/black_rectangles256.png' )">Black_rectangles256</p></li>
+                        <li><p class="menuItem" onclick="setBitmap( 'img/cross_board256.png' )">Cross_board256</p></li>
+                        <li><p class="menuItem" onclick="setBitmap( 'img/six_squares256.png' )">Six_squares256</p></li>
+                        <li><p class="menuItem" onclick="setBitmap( 'img/for_histogram256.png' )">For_histogram256</p></li>
+                        <li><p class="menuItem" onclick="setBitmap( 'img/grid256.png' )">Grid256</p></li>
+                        <li><p class="menuItem" onclick="setBitmap( 'img/lena_distortions256.png' )">Lena_distortions256</p></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Layout <b class="caret"></b></a>
+                    <ul class="dropdown-menu multi-level">
+                        <li class="dropdown-submenu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Open</a>
+                            <ul class="dropdown-menu">
+                                <li><p class="menuItem" onclick="doOpenPhotos()">Open photos</p></li>
+                                <li><p class="menuItem" onclick="doOpenIndustrial()">Open industrials</p></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Generate</a>
+                            <ul class="dropdown-menu">
+                                <li><p class="menuItem" onclick="doColors()">Colors</p></li>
+                                <li><p class="menuItem" onclick="doNoise()">Noise</p></li>
+                                <li class="dropdown-submenu">
+                                    <a href="#"  class="dropdown-toggle" data-toggle="dropdown">Grid</a>
+                                    <ul class="dropdown-menu">
+                                        <li><p class="menuItem" onclick="doGrid1()">Grid v. 1</p></li>
+                                        <li><p class="menuItem" onclick="doGrid2()">Grid v. 2</p></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><p class="menuItem" onclick="doClear()">Clear</p></li>
+                        <li><p class="menuItem" onclick="doMargins()">Margins</p></li>
+                        <li><p class="menuItem" onclick="doClone()">Clone</p></li>
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-toggle menuItem" data-toggle="dropdown">Move</a>
+                            <ul class="dropdown-menu">
+                                <li><p class="menuItem" onclick="doMoveO()">Move 0</p></li>
+                                <li><p class="menuItem" onclick="doMoveZ()">Move Z</p></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Examples for version 1<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><p class="menuItem" onclick="doExample1()">Example1</p></li>
+                        <li><p class="menuItem" onclick="doExample2()">Example2</p></li>
+                        <li><p class="menuItem" onclick="doExample3()">Example3</p></li>
+                        <li><p class="menuItem" onclick="doExample4()">Example4</p></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Projekt<b class="caret"></b></a>
+                    <ul class="dropdown-menu multi-level">
+                        <li><p class="menuItem" onclick="Odcienie()">Odcienie</p></li>
+                        <li><p class="menuItem" onclick="progowanie()">Progowanie</p></li>
+                        <li><p class="menuItem" onclick="odwrotnosc()">Odwrócone kolory</p></li>
+                        <li><p class="menuItem" onclick="wzory()">Wzory</p></li>
+
+            </ul>
+        </div>
+        <div id="container">
+            <div class="canvasRow">
+                <canvas id="myCanvas1" class="canvas" width="256" height="256"></canvas>
+                <canvas id="myCanvas2" class="canvas" width="256" height="256"></canvas>
+                <canvas id="myCanvas3" class="canvas" width="256" height="256"></canvas>
+            </div>
+            <div class="canvasRow">
+                <canvas id="myCanvas4" class="canvas" width="256" height="256"></canvas>
+                <canvas id="myCanvas5" class="canvas" width="256" height="256"></canvas>
+                <canvas id="myCanvas6" class="canvas" width="256" height="256"></canvas>
+            </div>
+        </div>
+        <span style="color: white">Projekt wykonany przez Wojciecha Jankowskiego, III rok Informatyka NS</span>
+    </body>
+</html>
